@@ -1,3 +1,5 @@
+*.tmp
 _book/
+dist/
 node_modules/
 *.pdf
