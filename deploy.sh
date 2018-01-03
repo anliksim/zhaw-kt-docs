@@ -50,4 +50,6 @@ fi
 git commit -a -F $MSG_FILE
 git push
 
+rm -f msg.tmp
+
 
