@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-katex/katex.min.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -141,6 +145,51 @@
             
         </li>
     
+        <li class="chapter " data-level="1.5" data-path="glossar.html">
+            
+                <a href="glossar.html">
+            
+                    
+                    Glossar
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="small/">
+            
+                <a href="small/">
+            
+                    
+                    Kompakt
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="small/lan.html">
+            
+                <a href="small/lan.html">
+            
+                    
+                    LAN
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
     
 
@@ -186,13 +235,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>Local Area Network</p>
+                                <h1 id="local-area-network">Local Area Network</h1>
 <ul>
 <li>Topologie: Netzwek-Struktur, wie die Knoten vebunden sind</li>
 <li>Knoten: Stationen in einem Netzwerk</li>
 </ul>
-<ul>
-<li><p>Topologie</p>
+<h2 id="topologie">Topologie</h2>
 <ul>
 <li>Bus: Knoten passiv an &#xDC;bertragungsmedium angeschlossen </li>
 <li>Linien: Zwei benachbarte Knoten verbunden. Beliebt in der Automaiton. Keine Ausfalltoleranz. </li>
@@ -200,69 +248,50 @@
 <li>Stern: Zentraler Verteiler (Hub, Switch). Entkoppelt Knoten. Single Point of Failure.</li>
 <li>Baum: Hierarchische Sterntopologie. </li>
 </ul>
-</li>
-</ul>
-<ul>
-<li><p>&#xDC;bertragungsart</p>
+<h2 id="&#xFC;bertragungsart">&#xDC;bertragungsart</h2>
 <ul>
 <li>Unicast: Sende an genau einen Knoten. Paket mit Adresse des Empf&#xE4;ngers. Belastet alle anderen nicht. </li>
 <li>Broadcast: Sende an alle Knoten.</li>
 <li>Multicast: Sende an Gruppe. Management der Grupper erfordert Hilfsprotokoll.</li>
 </ul>
-</li>
-</ul>
+<h2 id="ieee-8023-ethernet">IEEE 802.3 (Ethernet)</h2>
+<p>[Bitrate in Mbin/s]-[Base-/Broadband]-[Codierung des Mediums] =&gt; 
+100-BASE-T heisst 1GBit/s Ethernet mit Basisband-Kanalcodierung und Twisted Pair-Kabeln.</p>
+<h2 id="shared-ethernet">Shared Ethernet</h2>
+<h3 id="leitungscodierung">Leitungscodierung</h3>
+<p>Manchester-Code: Taktr&#xFC;ckgewinnung, gleichstromfrei, nicht eindeutig bei 0-, 1-Folgen deshalb Bitsync mit Preamble, SDF.</p>
+<h3 id="csmacd-zugriffsverfahren">CSMA/CD Zugriffsverfahren</h3>
+<p> keine zentralen Kontrollelemente, jeder Knoten autonom</p>
+<h4 id="senden-ohne-kollision">Senden ohne Kollision</h4>
+<p>Warten bis Kanal frei, dann Preamble und SFD. Bei Kollision &#xFC;berlagern sich Signale und sind erkennbar an h&#xF6;herem Signalpegel</p>
+<h4 id="empfang-ohne-kollison">Empfang ohne Kollison</h4>
+<p>Physical-Layer sync Preablme mit Datalink-Layer und wird zum Empfangsknoten.</p>
+<h4 id="senden-mit-kollision">Senden mit Kollision</h4>
+<p>Bei Kollision (gleichzeitiger Sendestart) wird ein Jam-Signal (32Bit) gesendet damit die Pr&#xFC;fsume am Ende falsch ist. Neuer Versuch bestimmt durch Binary Exponential Backoff. Wartezeit ist vielfaches der Slot-Zeit (512 Bitzeiten).</p>
+<h3 id="ethernet-frame">Ethernet-Frame</h3>
+<p>Preamble (7B), Start Frame Delimiter SDF (1B) =&gt; Auf Physical-Layer, 1-0-Bitfolge mit 1-1-Bits am Ende </p>
+<h4 id="frame-64-1518b">Frame (64-1518B)</h4>
 <ul>
-<li><p>IEEE 802.3 (Ethernet)</p>
+<li><p>Dest Address (6B), Src Address (6B) =&gt; 6 Byte ANSI-Adresse in Hex, Organizationally Unique Identifier (OUI) je nach Herstellerfirma, restl. 24Bits Laufnummer. I/G-Bit bei Src muss 0 sein.</p>
 <ul>
-<li>[Bitrate in Mbin/s]-[Base-/Broadband]-[Codierung des Mediums] =&gt; 
-100-BASE-T heisst 1GBit/s Ethernet mit Basisband-Kanalcodierung und Twisted Pair-Kabeln.</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Shared Ethernet</p>
-<ul>
-<li><p>Leitungscodierung</p>
-<ul>
-<li>Manchester-Code: Taktr&#xFC;ckgewinnung, gleichstromfrei, nicht eindeutig bei 0-, 1-Folgen deshalb Bitsync mit Preamble, SDF.</li>
-</ul>
-</li>
-<li><p>CSMA/CD Zugriffsverfahren: keine zentralen Kontrollelemente, jeder Knoten autonom</p>
-<ul>
-<li>Senden ohne Koll.: Warten bis Kanal frei, dann Preamble und SFD. Bei Kollision &#xFC;berlagern sich Signale und sind erkennbar an h&#xF6;herem Signalpegel</li>
-<li>Empfang ohne Koll.: Physical-Layer sync Preablme mit Datalink-Layer und wird zum Empfangsknoten.</li>
-<li>Senden mit Koll.: Bei Kollision (gleichzeitiger Sendestart) wird ein Jam-Signal (32Bit) gesendet damit die Pr&#xFC;fsume am Ende falsch ist. Neuer Versuch bestimmt durch Binary Exponential Backoff. Wartezeit ist vielfaches der Slot-Zeit (512 Bitzeiten).</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Ethernet-Frame 1518B + 12B)</p>
-<ul>
-<li><p>Preamble (7B), Start Frame Delimiter SDF (1B) =&gt; Auf Physical-Layer, 1-0-Bitfolge mit 1-1-Bits am Ende </p>
-</li>
-<li><p>Frame (64-1518B)</p>
-<ul>
-<li>Dest Address (6B), Src Address (6B) =&gt; 6 Byte ANSI-Adresse in Hex, Organizationally Unique Identifier (OUI) je nach Herstellerfirma, restl. 24Bits Laufnummer. I/G-Bit bei Src muss 0 sein.<ul>
 <li>I/G (Erstes Bit) =&gt; 0 -&gt; Individual (MAC-Adr. f&#xFC;r Ger&#xE4;te), 1 -&gt; Group (Multi-, Broadcast)</li>
 <li>U/L (Zeites Bit) =&gt; 0 -&gt; Universally- , 1 -&gt; Locally Administrated Address</li>
 </ul>
 </li>
-<li>Lenght/Type (2B)<ul>
+<li><p>Lenght/Type (2B)</p>
+<ul>
 <li>&lt;= 1500 effektive Anzahl Bytes in Data</li>
 <li>&gt;= 1536 Protokoll im Datenfeld (Normalfall)</li>
 </ul>
 </li>
-<li>Data (46-1500B) =&gt; Nutzdaten, Padding mit Nullbytes bei weniger als 46B Datenmenge</li>
+<li><p>Data (46-1500B) =&gt; Nutzdaten, Padding mit Nullbytes bei weniger als 46B Datenmenge</p>
+</li>
+</ul>
+<ul>
 <li>Frame Check Sequence FCS (4B) =&gt; CRC32 Checksum</li>
 </ul>
-</li>
-<li><p>Interpacket Gap IPG  (12B) =&gt; Auf Physical-Layer, mind. 96Bit-Zeiten, min. Abstand zwischen Frames</p>
-</li>
-</ul>
-</li>
-<li><p>Repeater</p>
+<p>Interpacket Gap IPG  (12B) =&gt; Auf Physical-Layer, mind. 96Bit-Zeiten, min. Abstand zwischen Frames</p>
+<h2 id="repeater">Repeater</h2>
 <ul>
 <li>L&#xF6;sung f&#xFC;r Limitierung durch D&#xE4;mpfung</li>
 <li>Segmente koppeln mit bidirektionaler Signalverst&#xE4;rkern (Repeater)</li>
@@ -275,12 +304,25 @@
 <li><p>Begrenzung der Anzahl Repeatern</p>
 <ul>
 <li>Round Trip Delay, Kollisionerkennung w&#xE4;hrend dem Senden</li>
-<li>Interpacket Gap Shrinkage, </li>
+<li>Interpacket Gap Shrinkage, IPG wird kleiner beim wiederholen</li>
 </ul>
 </li>
 </ul>
+<ul>
+<li>Collision Domain: Bereich in der Kollision erkannt werden kann, max. hald so gross wie die Ausdehnung des k&#xFC;rzesten Frames.<ul>
+<li>Late Collision: wenn nicht bemerkt das Ausdehnung zu gross</li>
+</ul>
 </li>
 </ul>
+<p>Bedingung f&#xFC;r die Erkennung einer Kollision: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>f</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow></msub><mo>&gt;</mo><mn>2</mn><mo>&#x2217;</mo><msub><mi>t</mi><mrow><mi>t</mi><mi>r</mi><mi>a</mi><mi>n</mi><mi>s</mi><mi>f</mi><mi>e</mi><mi>r</mi></mrow></msub></mrow><annotation encoding="application/x-tex">t_{frame} &gt; 2*t_{transfer}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.64444em;"></span><span class="strut bottom" style="height:0.9305479999999999em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10764em;">f</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">m</span><span class="mord mathit mtight">e</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">&gt;</span><span class="mord mathrm">2</span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">t</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight">s</span><span class="mord mathit mtight" style="margin-right:0.10764em;">f</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span>.</p>
+<p>Maximale Ausdehnung eines Segments:</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>f</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>F</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>i</mi><mi>z</mi><msub><mi>e</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><mrow><mi>B</mi><mi>i</mi><mi>t</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">t_{frame} = \frac {Framesize_{min}} {Bitrate}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8884309999999999em;"></span><span class="strut bottom" style="height:1.233431em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10764em;">f</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">m</span><span class="mord mathit mtight">e</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.05017em;">B</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">t</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">t</span><span class="mord mathit mtight">e</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.4100999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">F</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">m</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight">s</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight" style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord mathit mtight">e</span><span class="msupsub"><span class="vlist"><span style="top:0.143em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span>
+ und 
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>t</mi><mi>r</mi><mi>a</mi><mi>n</mi><mi>s</mi><mi>f</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>=</mo><mfrac><mrow><msub><mi>d</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow><mrow><msub><mi>C</mi><mrow><mi>M</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>u</mi><mi>m</mi></mrow></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">t_{transfer} = \frac {d_{max}} {C_{Medium}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8962079999999999em;"></span><span class="strut bottom" style="height:1.3470679999999997em;vertical-align:-0.4508599999999999em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">t</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight">s</span><span class="mord mathit mtight" style="margin-right:0.10764em;">f</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">=</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mtight"><span class="mord mathit mtight" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist"><span style="top:0.15122857142857138em;margin-right:0.07142857142857144em;margin-left:-0.07153em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">M</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight">d</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">u</span><span class="mord mathit mtight">m</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.4100999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mtight"><span class="mord mathit mtight">d</span><span class="msupsub"><span class="vlist"><span style="top:0.143em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span></span></span></span></p>
+<p>nach <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>d</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub></mrow><annotation encoding="application/x-tex">d_{max}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.69444em;"></span><span class="strut bottom" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span> ausl&#xF6;sen:</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>d</mi><mrow><mi>m</mi><mi>a</mi><mi>x</mi></mrow></msub><mo>&lt;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mfrac><mrow><mi>F</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi><mi>s</mi><mi>i</mi><mi>z</mi><msub><mi>e</mi><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow></msub></mrow><mrow><mi>B</mi><mi>i</mi><mi>t</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></mfrac><mo>&#x2217;</mo><msub><mi>C</mi><mrow><mi>M</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>u</mi><mi>m</mi></mrow></msub></mrow><annotation encoding="application/x-tex">d_{max} &lt; \frac12 \frac {Framesize_{min}} {Bitrate} * C_{Medium}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.8884309999999999em;"></span><span class="strut bottom" style="height:1.233431em;vertical-align:-0.345em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">d</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">x</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">&lt;</span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord mathrm mtight">2</span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.394em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord mathrm mtight">1</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mord reset-textstyle textstyle uncramped"><span class="mopen sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span><span class="mfrac"><span class="vlist"><span style="top:0.345em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.05017em;">B</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">t</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">t</span><span class="mord mathit mtight">e</span></span></span></span><span style="top:-0.22999999999999998em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle textstyle uncramped frac-line"></span></span><span style="top:-0.4100999999999999em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle uncramped mtight"><span class="mord scriptstyle uncramped mtight"><span class="mord mathit mtight" style="margin-right:0.13889em;">F</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">m</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight">s</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight" style="margin-right:0.04398em;">z</span><span class="mord mtight"><span class="mord mathit mtight">e</span><span class="msupsub"><span class="vlist"><span style="top:0.143em;margin-right:0.07142857142857144em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-scriptstyle scriptscriptstyle cramped mtight"><span class="mord scriptscriptstyle cramped mtight"><span class="mord mathit mtight">m</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span><span class="mclose sizing reset-size5 size5 reset-textstyle textstyle uncramped nulldelimiter"></span></span><span class="mbin">&#x2217;</span><span class="mord"><span class="mord mathit" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.07153em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10903em;">M</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight">d</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">u</span><span class="mord mathit mtight">m</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span></span></span></span></p>
+<p>Mit Repeater:</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mrow><mi>f</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>e</mi></mrow></msub><mo>&gt;</mo><mn>2</mn><mo>&#x2217;</mo><mo>(</mo><mo>&#x2211;</mo><msub><mi>t</mi><mrow><mi>t</mi><mi>r</mi><mi>a</mi><mi>n</mi><mi>s</mi><mi>f</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>+</mo><mo>&#x2211;</mo><msub><mi>t</mi><mrow><mi>f</mi><mi>o</mi><mi>r</mi><mi>w</mi><mi>a</mi><mi>r</mi><mi>d</mi><mi>i</mi><mi>n</mi><mi>g</mi></mrow></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">t_{frame} &gt; 2*(\sum t_{transfer} + \sum t_{forwarding})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="base textstyle uncramped"><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10764em;">f</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">m</span><span class="mord mathit mtight">e</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mrel">&gt;</span><span class="mord mathrm">2</span><span class="mbin">&#x2217;</span><span class="mopen">(</span><span class="mop op-symbol small-op" style="top:-0.0000050000000000050004em;">&#x2211;</span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight">t</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight">s</span><span class="mord mathit mtight" style="margin-right:0.10764em;">f</span><span class="mord mathit mtight">e</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mbin">+</span><span class="mop op-symbol small-op" style="top:-0.0000050000000000050004em;">&#x2211;</span><span class="mord"><span class="mord mathit">t</span><span class="msupsub"><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span><span class="reset-textstyle scriptstyle cramped mtight"><span class="mord scriptstyle cramped mtight"><span class="mord mathit mtight" style="margin-right:0.10764em;">f</span><span class="mord mathit mtight">o</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight" style="margin-right:0.02691em;">w</span><span class="mord mathit mtight">a</span><span class="mord mathit mtight" style="margin-right:0.02778em;">r</span><span class="mord mathit mtight">d</span><span class="mord mathit mtight">i</span><span class="mord mathit mtight">n</span><span class="mord mathit mtight" style="margin-right:0.03588em;">g</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">&#x200B;</span></span>&#x200B;</span></span></span></span><span class="mclose">)</span></span></span></span></p>
 
                                 
                                 </section>
@@ -324,7 +366,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"LAN","level":"1.2","depth":1,"next":{"title":"IP","level":"1.3","depth":1,"path":"ip.md","ref":"ip.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"lan.md","mtime":"2018-01-03T16:41:04.927Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-03T17:42:30.609Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"LAN","level":"1.2","depth":1,"next":{"title":"IP","level":"1.3","depth":1,"path":"ip.md","ref":"ip.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"lan.md","mtime":"2018-01-04T09:50:42.404Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-04T09:55:00.915Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -1,4 +1,5 @@
-deploy.sh
+*.md
+*.sh
 *.tmp
 _book/
 node_modules/
