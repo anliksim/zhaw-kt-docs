@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [LAN](lan.md)
+* [ELAN](elan.md)
 * [IP](ip.md)
 * [TCP](tcp.md)
 * [Glossar](glossar.md)

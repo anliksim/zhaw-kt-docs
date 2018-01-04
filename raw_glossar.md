@@ -25,3 +25,15 @@
 | ICMP | Internet Control Message Protocol                 |
 | TCP  | Transmission Control Protocol                     |
 | UDP  | User Datagram Protocol                            |
+| HSR  | High Availability Seamless Redundancy             |
+| PRP  | Parallel Redundancy Protocol                      |
+| STP  | Spanning Tree Protocol                            |
+| RSTP | Rapid STP                                         |
+| BDPU | Bridge Protocol Data Unit                         |
+| MDI  | Medium Dependent Interface                        |
+| MII  | Media Independent Interface                       |
+| MAC  | Media Access Control                              |
+| FLP  | Fast-Link Pulses                                  |
+| NLP  | Normal-Link Pulses                                |
+| LLDP | Link Layer Discovery Protocol                     |
+| SNMP | TBD                                               |
