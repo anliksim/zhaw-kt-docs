@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Glossar · GitBook</title>
+        <title>ELAN · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="small/" />
+    <link rel="next" href="ip.html" />
     
     
-    <link rel="prev" href="tcp.html" />
+    <link rel="prev" href="lan.html" />
     
 
     </head>
@@ -119,7 +119,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="elan.html">
+        <li class="chapter active" data-level="1.3" data-path="elan.html">
             
                 <a href="elan.html">
             
@@ -158,7 +158,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.6" data-path="glossar.html">
+        <li class="chapter " data-level="1.6" data-path="glossar.html">
             
                 <a href="glossar.html">
             
@@ -233,7 +233,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Glossar</a>
+        <a href="." >ELAN</a>
     </h1>
 </div>
 
@@ -248,166 +248,79 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="glossar">Glossar</h1>
-<table>
-<thead>
-<tr>
-<th>Term</th>
-<th>Bedeutung</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ARP</td>
-<td>Address Resolution Protocol</td>
-</tr>
-<tr>
-<td>BDPU</td>
-<td>Bridge Protocol Data Unit</td>
-</tr>
-<tr>
-<td>DHCP</td>
-<td>Dynamic Host Configuration Protocol</td>
-</tr>
-<tr>
-<td>DNS</td>
-<td>Domain Name System</td>
-</tr>
-<tr>
-<td>FLP</td>
-<td>Fast-Link Pulses</td>
-</tr>
-<tr>
-<td>FTP</td>
-<td>File Transfer Protocol</td>
-</tr>
-<tr>
-<td>HSR</td>
-<td>High Availability Seamless Redundancy</td>
-</tr>
-<tr>
-<td>IANA</td>
-<td>Internet Assigned Numbers Authority</td>
-</tr>
-<tr>
-<td>ICMP</td>
-<td>Internet Control Message Protocol</td>
-</tr>
-<tr>
-<td>IEEE</td>
-<td>Institute of Electrical and Electronics Engineers</td>
-</tr>
-<tr>
-<td>IHL</td>
-<td>Internet Header Lenght</td>
-</tr>
-<tr>
-<td>IP</td>
-<td>Internet Protocol</td>
-</tr>
-<tr>
-<td>LLDP</td>
-<td>Link Layer Discovery Protocol</td>
-</tr>
-<tr>
-<td>MAC</td>
-<td>Media Access Control</td>
-</tr>
-<tr>
-<td>MDI</td>
-<td>Medium Dependent Interface</td>
-</tr>
-<tr>
-<td>MII</td>
-<td>Media Independent Interface</td>
-</tr>
-<tr>
-<td>MIME</td>
-<td>Multipurpose Internet Mail Extensions</td>
-</tr>
-<tr>
-<td>MSS</td>
-<td>Maximum Segment Size</td>
-</tr>
-<tr>
-<td>MTU</td>
-<td>Maximum Transfer Unit</td>
-</tr>
-<tr>
-<td>NLP</td>
-<td>Normal-Link Pulses</td>
-</tr>
-<tr>
-<td>OSI</td>
-<td>Open Systems Interconnection</td>
-</tr>
-<tr>
-<td>PRP</td>
-<td>Parallel Redundancy Protocol</td>
-</tr>
-<tr>
-<td>RARP</td>
-<td>Reverse ARP</td>
-</tr>
-<tr>
-<td>RSTP</td>
-<td>Rapid STP</td>
-</tr>
-<tr>
-<td>RTO</td>
-<td>Retransmission Timeout</td>
-</tr>
-<tr>
-<td>RTT</td>
-<td>Round-Trip Time</td>
-</tr>
-<tr>
-<td>SFTP</td>
-<td>SSH FTP</td>
-</tr>
-<tr>
-<td>SMTP</td>
-<td>Simple Mail Transfer Protocol</td>
-</tr>
-<tr>
-<td>SNMP</td>
-<td>TBD</td>
-</tr>
-<tr>
-<td>SSH</td>
-<td>Secure Shell</td>
-</tr>
-<tr>
-<td>SSL</td>
-<td>Secure Sockets Layer</td>
-</tr>
-<tr>
-<td>STP</td>
-<td>Spanning Tree Protocol</td>
-</tr>
-<tr>
-<td>TCP</td>
-<td>Transmission Control Protocol</td>
-</tr>
-<tr>
-<td>TFPT</td>
-<td>Trivial FTP</td>
-</tr>
-<tr>
-<td>TSL</td>
-<td>Transport Layer Security</td>
-</tr>
-<tr>
-<td>TTL</td>
-<td>Time To Live</td>
-</tr>
-<tr>
-<td>UDP</td>
-<td>User Datagram Protocol</td>
-</tr>
-</tbody>
-</table>
-<p> Created with <a href="http://www.tablesgenerator.com/markdown_tables" target="_blank">Tables Generator</a></p>
+                                <h1 id="switched-lan">Switched LAN</h1>
+<p>Um Beschr&#xE4;nkungen des CSMA/CD zu durchbrechen werden Bridges und Switches ben&#xF6;tigt.</p>
+<h2 id="bridges">Bridges</h2>
+<ul>
+<li>Erlaubt es Collision Domains aufzuteilen</li>
+<li>Koppelt mehrere Collision Domains</li>
+<li>Pr&#xFC;ft Frames und sendet weiter</li>
+<li>Transparent Bridging: Aus sicht des Netzwerks unsichtbar</li>
+<li>Promiscuous Mode: Weiterleitung mit der Absender Adresse obwohl Bridge-Ports eigene Mac-Adressen besitzen</li>
+<li>Address Learning: Forwarding Database mit Sender-Adresse zu Bridge-Port mapping</li>
+<li>Frame Flooding: sendet an alle Ports wenn Addresse nicht bekannt</li>
+<li>Broadcast-Domain: alle mit Bridges gekoppelten LAN-Segmente</li>
+<li>Sicherheit gegen&#xFC;ber Totalausf&#xE4;llen</li>
+<li>Lokaler Datenverkehr unabh&#xE4;ngig</li>
+<li>Verz&#xF6;gerung bei Verkehr &#xFC;ber die Bridge</li>
+<li>Remote Bridge: Verbindet zwei LAN &#xFC;ber eine grosse Strecke</li>
+<li>Multiport-Bridge (Switch): Koppelung von mehreren Segmenten<ul>
+<li>zwischen 4 und 64 Ports</li>
+<li>vermittelte Bitrate steigt mit Port Anzahl </li>
+</ul>
+</li>
+</ul>
+<h3 id="vollduplex">Vollduplex</h3>
+<ul>
+<li>Gleichzeitig senden und empfangen</li>
+<li>getrennte oder bidirektionale &#xDC;bertragungkan&#xE4;le</li>
+<li>Keine Distanzlimite wegen Kollision  bei P2P</li>
+<li>Mikrosegemntiertes LAN: Keine Kollision bei geswitchten Netz ohne Repeater</li>
+</ul>
+<h3 id="anwendung">Anwendung</h3>
+<ul>
+<li>Server-Farmen: zentralisiert, Switch-Technik</li>
+<li>Remote-Switch/Multiport-Remote-Bridge</li>
+<li>Link Agregation/Port Trunking: B&#xFC;ndelung mehrerer physischen LAN-Ports zu schnellem Kanal</li>
+</ul>
+<h3 id="virtuelle-lan">Virtuelle LAN</h3>
+<ul>
+<li>LAN in unabh&#xE4;ngige logische Netze teilen</li>
+<li>Regelung von Broadcast-Verkehr, bildet Broadcast-Domain</li>
+<li>VLAN-Tag f&#xFC;r Identifikation auf Switches</li>
+<li>Priorisierung von Frames</li>
+<li>Frames werden verworfen bei vollem Buffer</li>
+</ul>
+<h3 id="redundanz-protokolle">Redundanz Protokolle</h3>
+<h4 id="rstp">(R)STP</h4>
+<ul>
+<li>(Rapid) Spanning Tree Protocol</li>
+<li>Redundante Pfade sperren um Loops zu verhindern</li>
+<li>Bei Fehlerfall vorgang wiederholen</li>
+<li>Austausch von BPDU (Bridge Protocl Data Unit), Multicast-Adressen welche von Switches nicht weitergeleitet werden</li>
+<li>Bei &quot;Rapid&quot; wird der Datenverkehr nicht gesperrt bei einer Neuberechnung</li>
+<li>Blockierte Pfade bleiben ungenutzt</li>
+<li>Alternativ: Shortest Path Bridging, HSR, PRP</li>
+</ul>
+<h3 id="leistungsmerkmale-von-switches">Leistungsmerkmale von Switches</h3>
+<ul>
+<li>Gr&#xF6;sse der Adresstabelle: wv Zieladressen gespeichert werden k&#xF6;nnen</li>
+<li>Gr&#xF6;sse des Buffers: Speicher f&#xFC;r Frames auf Ports</li>
+<li>Bit Rate: max. Bits/s, non-blocking wenn alle Ports auf max. laufen k&#xF6;nnen</li>
+<li>Forwarding Rate: Frames/s Weiterleitung</li>
+<li>Latency: interne Verarbeitungszeit</li>
+<li>Switching Mechnismus: <ul>
+<li>Store-and-Forward-Bridges: Frame einlesen und speichern, dann senden (1500Byte, 10Mbit/s - 12ms lat.)</li>
+<li>Cut-Through-/One-the-Fly-Switching: Weiterleitung beginnt nach empfang der Dest-Address (40us lat.)<ul>
+<li>speichern nur falls Ziel besetzt </li>
+<li>keine Filterung von Fehlerhaften Frames, Problem wenn viele Fehler</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Management: SNMP, LLDP Link Layer Discovery Protocol</li>
+</ul>
+<h2 id="moderne-ethernet-systeme">Moderne Ethernet-Systeme</h2>
 
                                 
                                 </section>
@@ -435,12 +348,12 @@
 
             
                 
-                <a href="tcp.html" class="navigation navigation-prev " aria-label="Previous page: TCP">
+                <a href="lan.html" class="navigation navigation-prev " aria-label="Previous page: LAN">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="small/" class="navigation navigation-next " aria-label="Next page: Kompakt">
+                <a href="ip.html" class="navigation navigation-next " aria-label="Next page: IP">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -451,7 +364,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Glossar","level":"1.6","depth":1,"next":{"title":"Kompakt","level":"1.7","depth":1,"path":"small/README.md","ref":"small/README.md","articles":[{"title":"LAN","level":"1.7.1","depth":2,"path":"small/lan.md","ref":"small/lan.md","articles":[]}]},"previous":{"title":"TCP","level":"1.5","depth":1,"path":"tcp.md","ref":"tcp.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"glossar.md","mtime":"2018-01-04T14:47:44.507Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-04T22:36:07.066Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ELAN","level":"1.3","depth":1,"next":{"title":"IP","level":"1.4","depth":1,"path":"ip.md","ref":"ip.md","articles":[]},"previous":{"title":"LAN","level":"1.2","depth":1,"path":"lan.md","ref":"lan.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"elan.md","mtime":"2018-01-04T14:39:18.420Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-04T22:36:07.066Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
