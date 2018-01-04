@@ -47,7 +47,8 @@ if [ ! $go = 'y' ]; then
 	exit
 fi
 
-git commit -a -F $MSG_FILE
+git add -A
+git commit -F $MSG_FILE
 git push
 
 rm -f msg.tmp
