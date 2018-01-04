@@ -4,3 +4,7 @@
 * [LAN](lan.md)
 * [IP](ip.md)
 * [TCP](tcp.md)
+* [Glossar](glossar.md)
+
+* [Kompakt](small/README.md)
+  * [LAN](small/lan.md) 
