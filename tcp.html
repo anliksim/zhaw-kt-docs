@@ -248,7 +248,127 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="tcp">TCP</h1>
+                                <h1 id="transport-layer">Transport Layer</h1>
+<ul>
+<li>Schnittstelle zwischen Betriebssystem und Applikationen</li>
+</ul>
+<h2 id="kapselung">Kapselung</h2>
+<ul>
+<li>Transport Protocol Packet mit Transport-Header dann IP-Header<ul>
+<li>User Datagramm bei UDP</li>
+<li>Segment bei TCP</li>
+</ul>
+</li>
+</ul>
+<h3 id="demultiplexen">Demultiplexen</h3>
+<ul>
+<li>Verteilen der Daten auf Applikationen<ul>
+<li>Basiert auf Dest Port des Transport-Headers</li>
+<li>Logiescher I/O-Kanal </li>
+</ul>
+</li>
+</ul>
+<h2 id="udp">UDP</h2>
+<ul>
+<li>Verbindungslos, unzuverl&#xE4;ssig</li>
+<li>Dient dem De/Multiplexen der Datagramme</li>
+</ul>
+<h3 id="header">Header</h3>
+<ul>
+<li>UDP Src/Dest Port (16B): F&#xFC;r De/Multiplexing</li>
+<li>UDP Message Lenght: Packet L&#xE4;nge in Byte. Header + Daten, min. 8</li>
+<li>Checksum: Pr&#xFC;fsumme &#xFC;ber Pseudo-, UDP-Header + Daten oder null</li>
+</ul>
+<h2 id="ports">Ports</h2>
+<ul>
+<li>Ports 0-1023: System / Well Known Ports, neue Zuordnung durch IANA/IETF<ul>
+<li>0:reserved,7:echo,9:discard,13:daytime,22:ssh,37:time,53:domain,69:tftp,80:www-http,110:pop3,123:ntp,161:snmp,177:xdmcp,220:imap3,513:who,525:timed</li>
+</ul>
+</li>
+<li>Ports 1024-49151: User Ports, neue Nummern auf Antrag</li>
+<li>Ports 49152-65535: Dynamic Ports zur freien Verf&#xFC;gung</li>
+</ul>
+<h2 id="tcp">TCP</h2>
+<ul>
+<li>Zuverl&#xE4;ssig: garantiert ohne Datenverlust und richtige Reihenfolge<ul>
+<li>Acknowledgment: Antwort auf fehlerfreies Segment</li>
+<li>Retransmission: Neu senden nach Ablauf des Timers oder bie Fehlern</li>
+<li>Retransmission Time-Out: Wartezeit bis zur Neu&#xFC;bertragung</li>
+<li>Round-Trip Time/Delay: Umlaufverz&#xF6;gerung</li>
+<li>Adaptive Wartezeit: RTO wird zur Laufzeit angepasst</li>
+</ul>
+</li>
+<li>Verbindungsorientiert: aktive Verbindung, virtuelle P2P Verbindung zwischen Software</li>
+<li>Vollduplex: Gleichzeitig senden und empfangen</li>
+<li>Stream-Schnittstelle: sendet/empf&#xE4;ngt fortlaufende, unstrukturierte Bytefolge</li>
+<li>Zuverl&#xE4;ssiger Verbindungsaufbau: 3-Way-Handshake</li>
+<li>Eleganter Verbindungsabbau: Zustellung der Daten vor Abbau</li>
+</ul>
+<p>TODO: TCP RTO/RTT Formeln in Katex</p>
+<h3 id="flow-control">Flow Control</h3>
+<ul>
+<li>Daten&#xFC;berlauf bei unterschiedlich schnellen Hosts</li>
+<li>Flow Control zum Verhindern von Datenverlust</li>
+<li>Stop-and-Wait-Verfahren: Wartet auf eine Quittung f&#xFC;r jedes Packet</li>
+<li>Sliding Window: &#xDC;bertragungsfenster mit max. Datenmenge vor Best&#xE4;tigung<ul>
+<li>Sender &#xFC;bertr&#xE4;gt ganze Datenmenge und beh&#xE4;t kopie</li>
+<li>Empf&#xE4;nger hat Buffer f&#xFC;r ganze Datenmenge</li>
+<li>Sender verwirft kopie nach Best&#xE4;tigung</li>
+<li>Window Advertisement: Empf&#xE4;nger sendet restliches Window mit Best&#xE4;tigung</li>
+<li>Zero Window: Falls der Empf&#xE4;nger Buffer sich f&#xFC;llt sendet er null, der Sender wartet dann bis er unaufgegordert ein positives Window erh&#xE4;lt</li>
+</ul>
+</li>
+</ul>
+<h3 id="verbindung">Verbindung</h3>
+<ul>
+<li>Datenstruktur: Transmission Control Block TCB</li>
+<li>Verbindungsaufbau 3-Way-Handshake Client/Serveri<ul>
+<li>SYN a, SYN b/ACK a+1, ACK b+1</li>
+<li>LISTEN: Wartet auf Verbindunganfrage SYN</li>
+<li>SYN-SENT: Client SYN, wartet auf SYN-ACK</li>
+<li>SYN-RECEIVED: Server wartet auf ACK</li>
+<li>ESTABLISHED: Verbindung besteht</li>
+</ul>
+</li>
+<li>Verbindungsabbau Aktiv/Passiv<ul>
+<li>FIN a+n(mit ACK b+m), ACK a+n+1, FIN b+m, ACK b+m+1</li>
+<li>FIN-WAIT-1: Aktiv FIN, wartet auf ACK</li>
+<li>FIN-WAIT-2: ACK erhalten, wartet auf FIN</li>
+<li>CLOSE-WAIT: Passiv erh&#xE4;lt FIN, sendet ACK</li>
+<li>LAST-ACK: Passiv FIN, wartet auf ACK</li>
+<li>CLOSING: Passiv erh&#xE4;lt last ACK </li>
+<li>TIME-WAIT: Last ACK gesendet, wartet im Falle einer Retrasmission 2x MSL </li>
+<li>CLOSED: Keine Verbindung existiert</li>
+</ul>
+</li>
+</ul>
+<p>TODO: Replace with state transition diagram   </p>
+<h3 id="&#xFC;berwachung">&#xDC;berwachung</h3>
+<ul>
+<li>Congestion Control: Kontrolle von Last durch Neu&#xFC;bertragung bei Fehlern</li>
+<li>Congestion Window: &#xDC;berlastungsfenster lokal beim Sender</li>
+<li>Slow Start: Min. Bytes von Sliding/Congestion Window wird verwendet</li>
+</ul>
+<h3 id="header">Header</h3>
+<ul>
+<li>Src/Dest Port: Host, Src ist Sender</li>
+<li>Sequence Number: SeqNr der Ausgangsdaten im Segment. Empf&#xE4;nger ordnet danach und berechnet AckNr.</li>
+<li>Acknowledgment Number: Definiert SeqNr der zu empfangenden Eingangsdaten.</li>
+<li>Data Offset: Header Gr&#xF6;sse in 32-Bit. Gibt an wo Daten beginnen.</li>
+<li>Control Bits: Flags zur Steuerung<ul>
+<li>10:URG - Urgent-Pointer-Feld g&#xFC;ltig</li>
+<li>11:ACK - Ack-Feld g&#xFC;ltig</li>
+<li>12:PSH - Pusht Daten direkt an App</li>
+<li>13:RST - Verbindung Reset</li>
+<li>14:SYN - Verbindung aufbauen/synch</li>
+<li>15:FIN - Sender hat keine weiteren Daten</li>
+</ul>
+</li>
+<li>Window: freier Bufferspeicher in Bytes</li>
+<li>Checksum: Einerkomplement der Summer aller Einerkompl aller 16-Bit-W&#xF6;rter (Pseudo-/TCP-Header, Daten)</li>
+<li>Urgent Pointer: URG-Bit gibt Feld mit Daten mit hoher Priorit&#xE4;t an</li>
+<li>Options: z.B max Segmentl&#xE4;nge (MSS), Multiplikationsfaktor f&#xFC;r Window-Size, Selevtive Ack (SACK) </li>
+</ul>
 
                                 
                                 </section>
@@ -292,7 +412,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"TCP","level":"1.5","depth":1,"next":{"title":"Glossar","level":"1.6","depth":1,"path":"glossar.md","ref":"glossar.md","articles":[]},"previous":{"title":"IP","level":"1.4","depth":1,"path":"ip.md","ref":"ip.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tcp.md","mtime":"2018-01-04T09:50:51.264Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-04T22:36:07.066Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"TCP","level":"1.5","depth":1,"next":{"title":"Glossar","level":"1.6","depth":1,"path":"glossar.md","ref":"glossar.md","articles":[]},"previous":{"title":"IP","level":"1.4","depth":1,"path":"ip.md","ref":"ip.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"tcp.md","mtime":"2018-01-07T17:36:42.314Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-07T17:51:37.031Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

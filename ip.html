@@ -248,7 +248,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="ip">IP</h1>
+                                <h1 id="internet-protokoll">Internet Protokoll</h1>
 <h2 id="network-layer">Network Layer</h2>
 <ul>
 <li>Datenaustausch &#xFC;ber heterogene Netze</li>
@@ -286,8 +286,191 @@
 <li>Routing: optimaler Weg bestimmen</li>
 <li>Forwarding: Weiterleitung der Datenpakete</li>
 <li>Muss Topologie des Netzes kennen</li>
-<li></li>
+<li>Routing Protocols: RIP, EGP, OSPF, BGP</li>
+<li>OSI Protokolle: IS-ES, IS-IS</li>
 </ul>
+<h5 id="brouter">Brouter</h5>
+<ul>
+<li>Bridging Router / Layer-3-Switches</li>
+<li>Routen einzelne Protokolle</li>
+</ul>
+<h2 id="adressierung">Adressierung</h2>
+<ul>
+<li>Hosts: Kommunikationsquellen</li>
+<li>Multi-homed Hosts: In mehreren Subnetzen angeschlossen</li>
+<li>Netzwerk-Adresse ist die tiefste</li>
+<li>Broadcast-Adresse ist die h&#xF6;chste</li>
+<li>Subnetzmaske AND Knotenadresse =&gt; Netzadresse</li>
+<li>Invertierte Subnetzmaske OR Knotenadresse =&gt; Broadcastadresse</li>
+<li>Classful-Routing mit Netzklassen</li>
+<li>Classless-Routing mit Netzmasken</li>
+<li>Subnetzmaske gibt an mit Bits: 1 -&gt; Netz, 0 -&gt; Host</li>
+</ul>
+<h3 id="aufbau">Aufbau</h3>
+<ul>
+<li>Big-Endian: h&#xF6;chstwertigstes Byte zuerst</li>
+<li>IP-Adresse:<ul>
+<li>eindeutige 32 Bit grosse Zahl</li>
+<li>besteht aus Netz- und Hostnummer</li>
+</ul>
+</li>
+<li>Hosts im gleichen Netz haben gleiche Netznummer</li>
+</ul>
+<h3 id="classful-routing">Classful-Routing</h3>
+<ul>
+<li>Netzklassen mit fixem Definitionsbereich</li>
+<li>Erste Adress-Bits bestimmen Gr&#xF6;sse</li>
+<li>Ben&#xF6;tigt keine Netzmaske, effizientes Routing</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Kl</th>
+<th>Pre</th>
+<th>Adressbereich</th>
+<th>Netze</th>
+<th>Knoten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0</td>
+<td>1.0.0.0 - 127.255.255.255</td>
+<td>128</td>
+<td>16&apos;777&apos;214</td>
+</tr>
+<tr>
+<td>B</td>
+<td>10</td>
+<td>128.0.0.0 - 191.255.255.255</td>
+<td>16&apos;384</td>
+<td>65&apos;534</td>
+</tr>
+<tr>
+<td>C</td>
+<td>110</td>
+<td>192.0.0.0 - 223.255.255.255</td>
+<td>2&apos;097&apos;152</td>
+<td>254</td>
+</tr>
+<tr>
+<td>D</td>
+<td>1110</td>
+<td>224.0.0.0 - 239.255.255.255</td>
+<td>Multicast</td>
+<td>-</td>
+</tr>
+<tr>
+<td>E</td>
+<td>11110</td>
+<td>240.0.0.0 - 247.255.255.255</td>
+<td>Reserviert</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="verwaltung">Verwaltung</h3>
+<ul>
+<li>Eindeutige Verteilung durch IANA -&gt; RIR dann RIPE-NCC -&gt; Switch (als Local Internet Registry)</li>
+<li>Private Netze m&#xFC;ssen nicht registriert werden<ul>
+<li>A: 10.0.0.0 / 255.0.0.0</li>
+<li>B: 172.16.0.0 - 172.21.0.0 / 255.255.0.0</li>
+<li>C: 192.168.0.0 - 192.168.255.0 / 255.255.255.0</li>
+</ul>
+</li>
+<li>Loopback: 127.x.x.x lokal - werde nicht aufs Netz gesendet</li>
+</ul>
+<h2 id="routing">Routing</h2>
+<ul>
+<li>Routing-Tabelle bestimmt Pfad eines Datagramm<ul>
+<li>Eintrag sortiert nach L&#xE4;nge der Netmaske</li>
+<li>Router sucht von oben nach unten nach (Zieladr AND Subnetzmaske), stimmt die Netzmaske wird das Interface verwendet und an das Gateway weitergeleitet7</li>
+</ul>
+</li>
+</ul>
+<h2 id="protokoll">Protokoll</h2>
+<h3 id="header">Header</h3>
+<p>TODO: IP header bild</p>
+<ul>
+<li>Version (4B): IPv4, IPv6</li>
+<li>IHL (4B): Internet Header Lenght, 5 (ohne Optionen) bis max. 15</li>
+<li>Type of Service (8B): Precedence, Delay, Throughput, Reliability<ul>
+<li>Neu DSCP (Bit 0-5), ECN (Bit 6-7)</li>
+</ul>
+</li>
+<li>Total Lenght (16B): Gesamtl&#xE4;nge Datagramm in Byte (inkl. Header). Max 65&apos;535</li>
+<li>Identification (16B): Identifiziert Fragmente</li>
+<li>Flags (3B): Bit 0 -&gt; immer Null, 1 -&gt; DF (Don&apos;t Fragment), 2 -&gt; MF (More Fragments)</li>
+<li>Fragment Offset (13B): 8-Byte-Einheiten f&#xFC;r die Position des Fragments</li>
+<li>TTL (8B): Lifetime, verhindert endlos Routing</li>
+<li>Protocol (8B): &#xDC;bergeordnetes Protokoll im Datenteil (1=ICMP,6=TCP,17=UDP)</li>
+<li>Header Checksum (16B): Header als Worte invertiert (Einerkomplement), addiert, dann die invertierte Summe</li>
+<li>Source Address (32B): Urspr&#xFC;nglicher Absender</li>
+<li>Dest Address (32B): Schlussendlicher Empf&#xE4;nger </li>
+<li>Options/Padding (bis 60Byte): optional, Options f&#xFC;r Erweiterungen, Padding f&#xFC;r Auff&#xFC;llen auf ganzzahliges Vielfaches von 32Bit.</li>
+</ul>
+<h2 id="fragmentation">Fragmentation</h2>
+<ul>
+<li>MTU: Max. &#xDC;bertragungseinheit (max MTU 1500 an Daten)</li>
+<li>Aufteilung in Fragmente mit eigenmen IP-Header</li>
+<li>Reassembly: Am Zielort zusammensetzen mittels Offset (FO), More Fragments (MF), Total Lenght (TL) und IHL<ul>
+<li>Nicht fragmentiert: FO=0, MF=0</li>
+<li>Erstes: FO=0, MF=1 (Header wird in Header-Buffer kopiert)</li>
+<li>Letztes: FO=x&gt;0, MF=0 (FO + TL = Total-Data-Lenght)</li>
+<li>Daten-Buffer als Speicher</li>
+<li>Fragment-Block-Bit-Tabelle pr&#xFC;ft Vollst&#xE4;ndigkeit</li>
+<li>Timer, nach ca. 15Sek abbruch</li>
+</ul>
+</li>
+</ul>
+<h2 id="kapselung">Kapselung</h2>
+<ul>
+<li>Address Resolution: &#xDC;bersetzung der Protokolladresse in Hardware-Adresse</li>
+<li>Zwischen Internet- und Datalink-Layer</li>
+<li>Routing &#xFC;ber mehrere Hosts wird jeweils die Src und Dest Adresse ausgetauscht</li>
+<li>Algorithmisch: Direkte Bestimmung der MAC-Adresse, falls Zusammenhang besteht</li>
+<li>Tabellengesteuert: Routing Tabelle, muss manuell gef&#xFC;hrt werden</li>
+<li>Nachritenaustausch: Anfragen der Adresse f&#xFC;r jedes Paket, ineffizient</li>
+</ul>
+<h3 id="arp">ARP</h3>
+<ul>
+<li>Kombination von Nachrichtenaustausch und Tabelle</li>
+<li>4-Byte IP auf 6-Byte Ethernet Adresse</li>
+<li>ARP-Request (Broadcast) mit IP, betroffener Knoten sendet ARP-Reply (Unicast)</li>
+<li>ARP-Cache mit TTL f&#xFC;r Eintr&#xE4;ge</li>
+<li>massive Belastung in grossen Netzwerken</li>
+<li>Gratuitous ARP-Request: Senden der eigenen IP Adresse bei registrierung zur Konflikterkennung</li>
+<li>Gratuitous ARP-Reply: Bei &#xC4;nderung der IP mit Broadcast</li>
+</ul>
+<h2 id="rarp">RARP</h2>
+<ul>
+<li>IP Adresse mit Ethernet-Adresse finden</li>
+<li>Besser als Ablegen einer IP-Adresse in Disk-Image</li>
+<li>Nachteil: MAC-Layer-Broadcast wird nicht weitergegeben von Routern (darum BootP und DHCP mit UDP)</li>
+</ul>
+<h2 id="icmp">ICMP</h2>
+<ul>
+<li>Router oder Empf&#xE4;nger-Host Mitteilung and Sender </li>
+<li>Meldung von Fehlern, k&#xFC;rzeren Wegen, Bufferoverflow</li>
+<li>Keine ICMP-Meldung &#xFC;ber ICMP und Fragmente mit FO!=0</li>
+<li>Als IP-Datagramm</li>
+<li>ICMP-Typ (Fehler): <ul>
+<li>3=Destination Unreachable: Datagramm kann nicht ans Endziel bef&#xF6;rdert werden </li>
+<li>4=Source Quench: Wenn Puffer ersch&#xF6;pft, fordert auf die &#xDC;bertragungsrate zu redizieren</li>
+<li>5=Redirect: falscher Router, fordert auf das Routing zu &#xE4;ndern</li>
+<li>11=Time Exceeded: Falls TTL des Datagramm null oder Fragment Timer abgelaufen</li>
+<li>12=Parameter Problem: ung&#xFC;ltiger Wert im IP-Header</li>
+</ul>
+</li>
+<li>ICMP-Typ (Info): 0=Echo Reply,8=Echo,13=Timestamp,14=Timestamp Reply,15=Information Request,16=Information Reply</li>
+</ul>
+<h2 id="destination-unreachable-message">Destination Unreachable Message</h2>
+<p>TODO</p>
+<h2 id="time-exceeded-message">Time Exceeded Message</h2>
+<p>TODO</p>
+<h2 id="echo-or-echo-reply-message">Echo or Echo Reply Message</h2>
+<p>TODO</p>
 
                                 
                                 </section>
@@ -331,7 +514,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"IP","level":"1.4","depth":1,"next":{"title":"TCP","level":"1.5","depth":1,"path":"tcp.md","ref":"tcp.md","articles":[]},"previous":{"title":"ELAN","level":"1.3","depth":1,"path":"elan.md","ref":"elan.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ip.md","mtime":"2018-01-04T15:37:46.507Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-04T22:36:07.066Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"IP","level":"1.4","depth":1,"next":{"title":"TCP","level":"1.5","depth":1,"path":"tcp.md","ref":"tcp.md","articles":[]},"previous":{"title":"ELAN","level":"1.3","depth":1,"path":"elan.md","ref":"elan.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["katex"],"pluginsConfig":{"katex":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":false,"fontSize":11,"fontFamily":"Calibri","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ip.md","mtime":"2018-01-05T14:56:50.341Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-01-07T17:51:37.031Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
