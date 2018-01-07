@@ -56,7 +56,58 @@ TODO: TCP RTO/RTT Formeln in Katex
   * Datenüberlauf bei unterschiedlich schnellen Hosts
   * Flow Control zum Verhindern von Datenverlust
   * Stop-and-Wait-Verfahren: Wartet auf eine Quittung für jedes Packet
-  * Sliding Window:    
+  * Sliding Window: Übertragungsfenster mit max. Datenmenge vor Bestätigung
+    * Sender überträgt ganze Datenmenge und behät kopie
+    * Empfänger hat Buffer für ganze Datenmenge
+    * Sender verwirft kopie nach Bestätigung
+    * Window Advertisement: Empfänger sendet restliches Window mit Bestätigung
+    * Zero Window: Falls der Empfänger Buffer sich füllt sendet er null, der Sender wartet dann bis er unaufgegordert ein positives Window erhält
 
 
+### Verbindung
 
+
+  * Datenstruktur: Transmission Control Block TCB
+  * Verbindungsaufbau 3-Way-Handshake Client/Serveri
+    * SYN a, SYN b/ACK a+1, ACK b+1
+    * LISTEN: Wartet auf Verbindunganfrage SYN
+    * SYN-SENT: Client SYN, wartet auf SYN-ACK
+    * SYN-RECEIVED: Server wartet auf ACK
+    * ESTABLISHED: Verbindung besteht
+  * Verbindungsabbau Aktiv/Passiv
+    * FIN a+n(mit ACK b+m), ACK a+n+1, FIN b+m, ACK b+m+1
+    * FIN-WAIT-1: Aktiv FIN, wartet auf ACK
+    * FIN-WAIT-2: ACK erhalten, wartet auf FIN
+    * CLOSE-WAIT: Passiv erhält FIN, sendet ACK
+    * LAST-ACK: Passiv FIN, wartet auf ACK
+    * CLOSING: Passiv erhält last ACK 
+    * TIME-WAIT: Last ACK gesendet, wartet im Falle einer Retrasmission 2x MSL 
+    * CLOSED: Keine Verbindung existiert
+
+TODO: Replace with state transition diagram   
+
+
+### Überwachung
+
+  * Congestion Control: Kontrolle von Last durch Neuübertragung bei Fehlern
+  * Congestion Window: Überlastungsfenster lokal beim Sender
+  * Slow Start: Min. Bytes von Sliding/Congestion Window wird verwendet
+
+
+### Header
+
+  * Src/Dest Port: Host, Src ist Sender
+  * Sequence Number: SeqNr der Ausgangsdaten im Segment. Empfänger ordnet danach und berechnet AckNr.
+  * Acknowledgment Number: Definiert SeqNr der zu empfangenden Eingangsdaten.
+  * Data Offset: Header Grösse in 32-Bit. Gibt an wo Daten beginnen.
+  * Control Bits: Flags zur Steuerung
+    * 10:URG - Urgent-Pointer-Feld gültig
+    * 11:ACK - Ack-Feld gültig
+    * 12:PSH - Pusht Daten direkt an App
+    * 13:RST - Verbindung Reset
+    * 14:SYN - Verbindung aufbauen/synch
+    * 15:FIN - Sender hat keine weiteren Daten
+  * Window: freier Bufferspeicher in Bytes
+  * Checksum: Einerkomplement der Summer aller Einerkompl aller 16-Bit-Wörter (Pseudo-/TCP-Header, Daten)
+  * Urgent Pointer: URG-Bit gibt Feld mit Daten mit hoher Priorität an
+  * Options: z.B max Segmentlänge (MSS), Multiplikationsfaktor für Window-Size, Selevtive Ack (SACK) 
