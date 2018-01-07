@@ -14,10 +14,12 @@
 | IANA  | Internet Assigned Numbers Authority               |
 | ICMP  | Internet Control Message Protocol                 |
 | IEEE  | Institute of Electrical and Electronics Engineers |
+| IETF  | Internet Engineering Task Force                   |
 | IHL   | Internet Header Lenght                            |
 | IP    | Internet Protocol                                 |
 | IS-ES | Intermediate System - End System                  |
 | IS-IS | Intermediate System - Intermediate System         |
+| ISOC  | Internet Society                                  |
 | LLC   | Logical Link Control                              |
 | LLDP  | Link Layer Discovery Protocol                     |
 | LSB   | Least Significant Bit                             |
@@ -34,19 +36,23 @@
 | OSPF  | Open Shortest Path First                          |
 | PRP   | Parallel Redundancy Protocol                      |
 | RARP  | Reverse ARP                                       |
+| RFC   | Request for Comments                              |
 | RIPE  | Réseaux IP Européens Network Coordination         |
 | RIP   | Routing Information Protocol                      |
 | RIR   | Regional Internet Registries                      |
 | RSTP  | Rapid STP                                         |
 | RTO   | Retransmission Timeout                            |
 | RTT   | Round-Trip Time                                   |
+| SACK  | Selective Acknowledge                             |
 | SFTP  | SSH FTP                                           |
 | SMTP  | Simple Mail Transfer Protocol                     |
 | SNAP  | Sub-Network Access Protocol                       |
 | SNMP  | TBD                                               |
+| SRTT  | Smoothed RTT                                      |
 | SSH   | Secure Shell                                      |
 | SSL   | Secure Sockets Layer                              |
 | STP   | Spanning Tree Protocol                            |
+| TCB   | Transmission Control Block                        |
 | TCP   | Transmission Control Protocol                     |
 | TFPT  | Trivial FTP                                       |
 | TSL   | Transport Layer Security                          |

@@ -51,3 +51,8 @@
 | RIPE  | Réseaux IP Européens Network Coordination         |
 | LLC   | Logical Link Control                              |
 | SNAP  | Sub-Network Access Protocol                       |
+| SACK  | Selective Acknowledge                             |
+| RFC   | Request for Comments                              |
+| IETF  | Internet Engineering Task Force                   |
+| ISOC  | Internet Society                                  |
+| TCB   | Transmission Control Block                        |
