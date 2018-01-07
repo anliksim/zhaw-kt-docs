@@ -1,5 +1,13 @@
 #!/bin/bash
 
+LOG_MSG_CNT=1
+
+# Define how many log messages to use
+if [ ! -z "$1" ]; then
+  LOG_MSG_CNT=$1
+fi
+
+
 print_dl() {
 	echo "============================="
 }
@@ -17,7 +25,7 @@ cp -r _book/* dist/
 
 
 echo -e "Publish page\n" > msg.tmp
-git log -1 >> msg.tmp
+git log -$LOG_MSG_CNT >> msg.tmp
 
 cd dist
 
