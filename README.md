@@ -1,6 +1,6 @@
 # Introduction
 
-ZHAW SoE Module [Kommunikationstechnik][1]
+ZHAW SoE Modul [Kommunikationstechnik][1]
 
 ## Usage
 

@@ -51,12 +51,12 @@
   * Multi-homed Hosts: In mehreren Subnetzen angeschlossen
   * Netzwerk-Adresse ist die tiefste
   * Broadcast-Adresse ist die höchste
-  * Subnetzmaske AND Knotenadresse => Netzadresse
-  * Invertierte Subnetzmaske OR Knotenadresse => Broadcastadresse
+  * Subnetzmaske AND Knotenadresse => Netzadresse (tiefste)
+  * Invertierte Subnetzmaske OR Knotenadresse => Broadcastadresse (höchste)
   * Classful-Routing mit Netzklassen
   * Classless-Routing mit Netzmasken
   * Subnetzmaske gibt an mit Bits: 1 -> Netz, 0 -> Host
-
+    * 255(1111'1111) 254(1111'1110) 252(1111'1100) 248(1111'1000) 240(1111'0000) 224(1110'0000) 192(1100'0000) 128(1000'0000) 0(0000'0000)
 
 ### Aufbau
 

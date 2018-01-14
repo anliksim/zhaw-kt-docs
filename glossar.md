@@ -20,6 +20,7 @@
 | IS-ES | Intermediate System - End System                  |
 | IS-IS | Intermediate System - Intermediate System         |
 | ISOC  | Internet Society                                  |
+| ISO   | International Standards Organisation              |
 | LLC   | Logical Link Control                              |
 | LLDP  | Link Layer Discovery Protocol                     |
 | LSB   | Least Significant Bit                             |
